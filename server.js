@@ -8,6 +8,7 @@ const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
 
+
 (function () {
     var childProcess = require("child_process");
     var oldSpawn = childProcess.spawn;
@@ -23,11 +24,13 @@ const passport = require("passport");
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/smart_hedge");
-// mongoose.connect(`mongodb://${config.db_user}:${config.db_pass}@ds117605.mlab.com:17605/test_db`);
+  // mongoose.connect(`mongodb://${config.db_user}:${config.db_pass}@ds117719.mlab.com:17719/heroku_s1t7jlt9`);
+  mongoose.connect(`mongodb://heroku_s1t7jlt9:5ajfqtgmek2auipdqus2cp0qrh@ds117719.mlab.com:17719/heroku_s1t7jlt9`);
+  
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, "client/build")));
+app.use(express.static(path.join(__dirname, "build_webpack")));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
